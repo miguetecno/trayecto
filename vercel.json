@@ -1,0 +1,10 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://www.misterdigital.org/trayecto-llano",
+      "permanent": false
+    }
+  ]
+}
