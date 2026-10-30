@@ -7,3 +7,5 @@ Demostración de Trayecto, el sistema de seguimiento de trayectorias escolares d
 - `vercel.json`: direcciones limpias (`/demo`) y redirección de la raíz a la landing publicada.
 
 Publicación: cada cambio en la rama `main` se publica automáticamente en Vercel.
+
+Dirección de la demo: `/demo` (por ejemplo, https://trayecto.misterdigital.org/demo).
