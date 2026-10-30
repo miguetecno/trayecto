@@ -1247,7 +1247,7 @@ const TOUR=[
   {k:"asistencia",t:"Mirar el celular de la familia",d:"Los avisos llegan en segundos, con el texto que la escuela definió.",go:null,pre:()=>openPhone()},
   {k:"notas",t:"Cargar notas de Matemática",d:"Subir la planilla Excel del docente (o pegar la columna). Promedios, proyección y avisos se calculan solos.",go:"calificaciones",pre:()=>{ui.notesCourse="c3";ui.notesSubj="MAT";}},
   {k:"boletines",t:"Generar y enviar los informes",d:"Generar 25 informes de avance en segundos; cada familia recibe el suyo.",go:"boletines",pre:()=>{ui.bolCourse="c3";}},
-  {k:"legajo",t:"Abrir el legajo de Facundo Ojeda",d:"Asistencia diaria, calificaciones, historial de avisos e informe pedagógico redactado con IA.",go:"estudiantes",pre:()=>{ui.sel=NARR.facundo.id;}},
+  {k:"legajo",t:"Abrir el legajo de Facundo Ojeda",d:"Asistencia diaria, calificaciones, historial de avisos y borrador del informe pedagógico.",go:"estudiantes",pre:()=>{ui.sel=NARR.facundo.id;}},
   {k:"auto",t:"Repasar las reglas",d:"Cada automatización se activa o desactiva y respeta el régimen de la escuela.",go:"automatizaciones"}
 ];
 function renderTour(){
