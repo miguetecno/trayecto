@@ -1,0 +1,429 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex, nofollow"><meta name="description" content="Propuesta de Trayecto para la Escuela Técnica Carmen Molina de Llano: asistencia, calificaciones y avisos a las familias, automatizados y a tiempo."><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Crect width='34' height='34' rx='9' fill='%232c4370'/%3E%3Ccircle cx='9' cy='23' r='3' fill='%23dde8f6'/%3E%3Ccircle cx='17' cy='16' r='3' fill='%23dde8f6' opacity='.8'/%3E%3Ccircle cx='25' cy='10' r='3' fill='%23dde8f6' opacity='.55'/%3E%3C/svg%3E"><meta property="og:type" content="website"><meta property="og:title" content="Propuesta Llano · Trayecto"><meta property="og:description" content="Propuesta de Trayecto para la Escuela Técnica Carmen Molina de Llano: asistencia, calificaciones y avisos a las familias, automatizados y a tiempo."><meta property="og:url" content="https://propuesta-llano.vercel.app/"><meta property="og:image" content="https://propuesta-llano.vercel.app/og-v2.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><title>Propuesta Llano · Trayecto</title><style>body{margin:0;background:var(--paper,#f2f5fa)}</style></head><body>
+<!-- TRAYECTO · Landing para pegar en un elemento de código personalizado (Custom JS/HTML).
+      -->
+<script>
+window.TRAYECTO_DEMO_URL = "https://plataforma-llano.vercel.app";
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: el cuaderno cuadriculado del aula con la identidad de la escuela (azul institucional y celeste del logo).
+   Titulares en serif, una planilla de asistencia viva en el hero y bandas que alternan papel y azul. */
+:root{
+  --paper:#f2f5fa; --sheet:#ffffff; --sheet-2:#e8eef7; --grid:rgba(44,67,112,.07);
+  --ink:#15213a; --ink-2:#46546d; --ink-3:#76829a; --line:#d3dbe8;
+  --accent:#2c4370; --accent-ink:#2c4370; --on-accent:#ffffff; --accent-soft:#dde8f6;
+  --risk:#c2372c; --risk-soft:#f9dfdb; --warn:#a96c00; --warn-soft:#fbeccb; --ok:#1d8a4b; --ok-soft:#dcf1e3;
+  --band:#1c2c4d; --band-ink:#eef3fb; --band-ink-2:#b4c2da; --band-accent:#9cbcf0; --band-grid:rgba(156,188,240,.08);
+  --chat:#e7edf5; --bubble:#ffffff;
+  --shadow:0 1px 2px rgba(21,33,58,.06),0 18px 40px -12px rgba(21,33,58,.2);
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --display:"Fraunces",Georgia,serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#070c17; --sheet:#0e1626; --sheet-2:#142036; --grid:rgba(156,188,240,.06);
+  --ink:#e6ecf6; --ink-2:#a6b3c9; --ink-3:#74829a; --line:#1f2b43;
+  --accent:#9cbcf0; --accent-ink:#a9c5f3; --on-accent:#0b1426; --accent-soft:#18284a;
+  --risk:#ff6b5b; --risk-soft:#311511; --warn:#f0b429; --warn-soft:#2b220d; --ok:#3fcf86; --ok-soft:#0f2a1c;
+  --band:#0e1626; --band-ink:#e6ecf6; --band-ink-2:#a6b3c9; --band-accent:#9cbcf0; --band-grid:rgba(156,188,240,.06);
+  --chat:#0c1320; --bubble:#17223a;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 18px 40px -12px rgba(0,0,0,.6);
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --paper:#070c17; --sheet:#0e1626; --sheet-2:#142036; --grid:rgba(156,188,240,.06);
+  --ink:#e6ecf6; --ink-2:#a6b3c9; --ink-3:#74829a; --line:#1f2b43;
+  --accent:#9cbcf0; --accent-ink:#a9c5f3; --on-accent:#0b1426; --accent-soft:#18284a;
+  --risk:#ff6b5b; --risk-soft:#311511; --warn:#f0b429; --warn-soft:#2b220d; --ok:#3fcf86; --ok-soft:#0f2a1c;
+  --band:#0e1626; --band-ink:#e6ecf6; --band-ink-2:#a6b3c9; --band-accent:#9cbcf0; --band-grid:rgba(156,188,240,.06);
+  --chat:#0c1320; --bubble:#17223a;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 18px 40px -12px rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+.ty,.ty *{box-sizing:border-box}
+.ty{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;text-align:left;width:100%}
+.ty h1,.ty h2,.ty h3{margin:0;padding:0;text-wrap:balance;text-transform:none}
+:where(.ty) h1,:where(.ty) h2,:where(.ty) h3{color:inherit}
+.ty p{margin:0;padding:0}
+:where(.ty) p{color:inherit}
+:where(.ty) a{color:inherit}
+.ty :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.tab{font-variant-numeric:tabular-nums}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:24px;padding-block:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo b{font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:-.005em;line-height:1.1}
+.logo .school-logo{width:42px;height:42px;border-radius:8px;background:#fff;border:1px solid var(--line);object-fit:contain;flex:none}
+.logo .sep{width:1px;height:30px;background:var(--line)}
+.eyebrow img{width:30px;height:30px;border-radius:6px;background:#fff;border:1px solid var(--line);object-fit:contain}
+.logo small{display:block;font-size:11px;color:var(--ink-3);letter-spacing:.04em;margin-top:2px}
+.nav-links{display:flex;gap:22px;margin-left:auto;font-size:14px;color:var(--ink-2)}
+.nav-links a{text-decoration:none}
+.nav-links a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:10px;padding:12px 20px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid var(--line);background:var(--sheet);color:var(--ink);cursor:pointer;white-space:nowrap;font-family:var(--sans)}
+.btn:hover{border-color:var(--ink-3)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.primary:hover{filter:brightness(.96)}
+.btn.sm{padding:8px 14px;font-size:14px}
+.btn svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* hero */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px;-webkit-mask-image:linear-gradient(180deg,#000 55%,transparent);mask-image:linear-gradient(180deg,#000 55%,transparent);pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:56px;align-items:center;padding-block:72px 80px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.eyebrow{text-transform:none;letter-spacing:.01em;font-size:14px}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5.4vw,66px);line-height:1.02;letter-spacing:-.025em}
+.hero h1 em{font-style:italic;color:var(--accent-ink)}
+.lead{font-size:19px;color:var(--ink-2);margin-top:22px;max-width:34em}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.fine{font-size:13px;color:var(--ink-3);margin-top:16px}
+
+/* planilla viva */
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+.sheet-h{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.sheet-h b{font-size:14px}
+.sheet-h span{font-size:12px;color:var(--ink-3)}
+.att{width:100%;border-collapse:collapse;font-size:13px}
+.att th{font-size:10.5px;font-weight:600;color:var(--ink-3);padding:8px 0 6px;text-align:center}
+.att th.today{color:var(--accent-ink)}
+.att td{padding:7px 0;border-top:1px solid var(--line);text-align:center}
+.att td.n{text-align:left;padding-left:18px;white-space:nowrap;font-weight:500}
+.att td.c{padding-right:18px;text-align:right;white-space:nowrap}
+.mk{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:5px;font-size:10.5px;font-weight:700;color:var(--ink-3)}
+.mk.P{color:var(--ok)}
+.mk.A{background:var(--risk);color:#fff}
+.mk.T{background:var(--warn);color:#fff}
+.mk.today{box-shadow:inset 0 0 0 1.5px var(--accent)}
+.cnt{display:inline-block;min-width:2.2ch;font-weight:700}
+.flash{animation:flash 1.2s ease}
+@keyframes flash{0%{color:var(--risk);transform:scale(1.25)}100%{transform:none}}
+.sheet-foot{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:0;border-top:1px solid var(--line)}
+.sheet-act{padding:16px 18px;display:flex;flex-direction:column;gap:10px;justify-content:center;border-right:1px solid var(--line)}
+.sheet-act p{font-size:12.5px;color:var(--ink-2);line-height:1.45}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;border-radius:20px;padding:3px 10px;width:max-content}
+.pill i{width:8px;height:8px;border-radius:50%;background:currentColor}
+.pill.l0{background:var(--ok-soft);color:var(--ok)} .pill.l1{background:var(--warn-soft);color:var(--warn)}
+.chat{background:var(--chat);padding:14px;display:flex;flex-direction:column;gap:6px;min-height:178px;justify-content:flex-end}
+.chat small{font-size:10.5px;color:var(--ink-3);align-self:center}
+.bubble{background:var(--bubble);border-radius:4px 14px 14px 14px;padding:9px 11px 6px;font-size:12.5px;line-height:1.45;box-shadow:0 1px 1px rgba(0,0,0,.06)}
+.bubble time{display:block;text-align:right;font-size:10px;color:var(--ink-3);margin-top:3px}
+.bubble.in{animation:in .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.typing{background:var(--bubble);border-radius:14px;padding:9px 12px;display:flex;gap:4px;width:max-content}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--ink-3);animation:blink 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes blink{0%,100%{opacity:.25}50%{opacity:1}}
+
+/* secciones */
+.ty section{scroll-margin-top:70px}
+.sec{padding-block:96px}
+.sec-h{max-width:760px}
+.kicker{font-family:var(--sans);font-weight:600;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:14px}
+.sec h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,3.8vw,48px);line-height:1.08;letter-spacing:-.02em}
+.sec .intro{font-size:18px;color:var(--ink-2);margin-top:18px;max-width:40em}
+
+.pains{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin-top:52px;border-top:1px solid var(--line)}
+.pain{padding:28px 32px 30px 0;border-bottom:1px solid var(--line)}
+.pain:nth-child(odd){border-right:1px solid var(--line)}
+.pain:nth-child(even){padding-left:32px;padding-right:0}
+.pain h3{font-size:19px;font-weight:600;letter-spacing:-.01em}
+.pain p{color:var(--ink-2);margin-top:8px;max-width:32em}
+.context{margin-top:40px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px;align-items:center;background:var(--sheet);border:1px solid var(--line);border-radius:14px;padding:22px 26px}
+.context b{font-family:var(--serif);font-weight:600;font-size:44px;line-height:1;color:var(--accent-ink)}
+.context p{color:var(--ink-2)}
+.context small{display:block;font-size:12px;color:var(--ink-3);margin-top:6px}
+
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:52px;counter-reset:s}
+.step{position:relative;padding-top:58px}
+.step::before{counter-increment:s;content:counter(s);position:absolute;top:0;left:0;width:42px;height:42px;border-radius:50%;border:1.5px solid var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-family:var(--serif);font-weight:600;font-size:19px}
+.step::after{content:"";position:absolute;top:21px;left:54px;right:-14px;border-top:1.5px dashed var(--line)}
+.step:last-child::after{display:none}
+.step h3{font-family:var(--serif);font-weight:600;font-size:24px;letter-spacing:-.01em}
+.step p{color:var(--ink-2);margin-top:10px}
+
+.band{background:var(--band);color:var(--band-ink)}
+.band .kicker{color:var(--band-accent)}
+.band .intro{color:var(--band-ink-2)}
+.rules{margin-top:44px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12);border-radius:14px;overflow:hidden}
+.rule{background:var(--band);padding:20px 22px;display:flex;flex-direction:column;gap:8px}
+.rule .when{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--band-ink-2)}
+.rule .when b{color:var(--band-accent);font-weight:700}
+.rule p{font-size:15.5px;line-height:1.5}
+.band .note{font-size:13px;color:var(--band-ink-2);margin-top:18px}
+
+.roles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:48px}
+.role{border-top:3px solid var(--ink);padding-top:18px}
+.role{border-top-color:var(--accent)}
+.role h3{font-size:18px;font-weight:600}
+.role p{color:var(--ink-2);margin-top:8px;font-size:15px}
+
+.cal{margin-top:48px;background:var(--sheet);border:1px solid var(--line);border-radius:16px;padding:28px 28px 22px}
+.cal-scroll{overflow-x:auto}
+.tl{position:relative;min-width:760px;height:150px;margin-top:6px}
+.tl .axis{position:absolute;left:0;right:0;top:64px;height:6px;border-radius:3px;background:var(--sheet-2)}
+.tl .seg{position:absolute;top:64px;height:6px;border-radius:3px}
+.tl .m{position:absolute;top:80px;font-size:11px;color:var(--ink-3);transform:translateX(-50%)}
+.tl .ev{position:absolute;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;width:120px}
+.tl .ev.up{bottom:92px}
+.tl .ev.dn{top:96px}
+.tl .ev b{font-family:var(--sans);font-size:13px;font-weight:700}
+.tl .ev span{font-size:11.5px;color:var(--ink-2);line-height:1.3}
+.tl .pin{position:absolute;top:58px;width:2px;height:18px;background:var(--ink);transform:translateX(-50%)}
+.tl .pin.acc{background:var(--accent)}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.fact{background:var(--accent-soft);color:var(--accent-ink);font-weight:600;font-size:14px;border-radius:30px;padding:6px 14px}
+.src{font-size:12px;color:var(--ink-3);margin-top:14px}
+
+.care{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:56px;align-items:start}
+.care ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.care li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;padding:18px 0;border-top:1px solid var(--line)}
+.care li:first-child{border-top:0;padding-top:4px}
+.care li svg{width:22px;height:22px;stroke:var(--accent-ink);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
+.care li b{display:block;font-weight:600}
+.care li span{color:var(--ink-2);font-size:15px}
+
+.faq{margin-top:40px;display:flex;flex-direction:column;border-top:1px solid var(--line);max-width:860px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:20px 40px 20px 0;font-size:18px;font-weight:600;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:4px;top:16px;font-family:var(--display);font-size:24px;color:var(--accent-ink)}
+.faq details[open] summary::after{content:"–"}
+.faq details p{padding:0 0 22px;color:var(--ink-2);max-width:42em}
+
+.final{background:var(--band);color:var(--band-ink);position:relative;overflow:hidden}
+.final::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--band-grid) 1px,transparent 1px),linear-gradient(90deg,var(--band-grid) 1px,transparent 1px);background-size:24px 24px;pointer-events:none}
+.final .wrap{position:relative;padding-block:92px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:end}
+.final h2{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.4vw,56px);line-height:1.04;letter-spacing:-.02em}
+.final p{color:var(--band-ink-2);margin-top:16px;font-size:17px}
+.final .ctas{justify-content:flex-start}
+.final .btn:not(.primary){background:transparent;color:var(--band-ink);border-color:rgba(255,255,255,.3)}
+.final .btn.primary{background:var(--band-accent);border-color:var(--band-accent);color:#0b1426}
+.ty footer{border-top:1px solid var(--line)}
+.ty footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--ink-3)}
+
+@media (max-width:960px){
+  .hero .wrap{grid-template-columns:minmax(0,1fr);gap:44px;padding-block:48px 56px}
+  .steps,.roles{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .step::after{display:none}
+  .rules{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .care,.final .wrap{grid-template-columns:minmax(0,1fr)}
+  .nav-links{display:none}
+  .nav .btn{margin-left:auto}
+}
+@media (max-width:640px){
+  .ty{font-size:15.5px}
+  .sec{padding-block:64px}
+  .pains{grid-template-columns:minmax(0,1fr)}
+  .pain,.pain:nth-child(even){padding:22px 0;border-right:0}
+  .steps,.roles,.rules{grid-template-columns:minmax(0,1fr)}
+  .context{grid-template-columns:minmax(0,1fr);gap:10px}
+  .sheet-foot{grid-template-columns:minmax(0,1fr)}
+  .sheet-act{border-right:0;border-bottom:1px solid var(--line)}
+  .att .hide-sm{display:none}
+  .lead{font-size:17px}
+  .cal{padding:20px 16px}
+}
+@media (max-width:640px){.logo small{display:none}.logo .school-logo{width:36px;height:36px}.nav .btn{padding:8px 12px;font-size:13px}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+
+.ty ul,.ty ol{margin:0}
+.ty img{max-width:100%}
+</style>
+
+<div class="ty" id="trayecto-landing">
+<header class="nav"><div class="wrap">
+  <a class="logo" href="#top" aria-label="Trayecto para la Escuela Técnica Carmen Molina de Llano, inicio">
+    <img class="school-logo" src="data:image/png;base64,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" alt="Logo de la Escuela Técnica Carmen Molina de Llano" width="42" height="42">
+    <span class="sep" aria-hidden="true"></span>
+    <svg width="32" height="32" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" style="fill:#2c4370"/><circle cx="9" cy="23" r="2.6" style="fill:#dde8f6"/><circle cx="17" cy="16" r="2.6" style="fill:#dde8f6" opacity=".8"/><circle cx="25" cy="10" r="2.6" style="fill:#dde8f6" opacity=".55"/><path d="M9 23 17 16 25 10" style="stroke:#dde8f6;fill:none" stroke-width="1.6" stroke-dasharray="2 2.4"/></svg>
+    <span><b>Trayecto</b><small>by Yanina Insaurralde</small></span>
+  </a>
+  <nav class="nav-links" aria-label="Secciones"><a href="#problema">El problema</a><a href="#como">Cómo funciona</a><a href="#reglas">Automatizaciones</a><a href="#preguntas">Preguntas</a></nav>
+  <a class="btn primary sm" href="https://plataforma-llano.vercel.app" data-demo target="_blank" rel="noopener">Ver la demostración</a>
+</div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap">
+  <div>
+    <p class="eyebrow"><img src="" alt="" width="30" height="30" data-logo>Propuesta para la Escuela Técnica Carmen Molina de Llano</p>
+    <h1>Detectar <em>a tiempo</em> a cada estudiante que necesita acompañamiento.</h1>
+    <p class="lead">Trayecto toma la asistencia y las calificaciones que la escuela ya registra, realiza los cálculos y avisa a las familias y al equipo directivo en el momento oportuno. Preceptoría deja de computar inasistencias a mano y los informes de un curso completo se generan en segundos.</p>
+    <div class="ctas">
+      <a class="btn primary" href="https://plataforma-llano.vercel.app" data-demo target="_blank" rel="noopener">Ver la demostración <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn" href="#como">Cómo funciona</a>
+    </div>
+    <p class="fine">La demostración utiliza datos ficticios y el calendario escolar 2026 de la provincia de Corrientes.</p>
+  </div>
+
+  <div class="sheet" aria-label="Ejemplo: registro de asistencia y aviso automático a la familia">
+    <div class="sheet-h"><b>Registro de asistencia · 3° 2ª</b><span id="hoyLbl">Semana del 26 al 30 de octubre</span></div>
+    <table class="att">
+      <thead><tr><th></th><th class="hide-sm">L</th><th class="hide-sm">M</th><th>M</th><th>J</th><th class="today">V · hoy</th><th style="text-align:right;padding-right:18px">Inasist.</th></tr></thead>
+      <tbody>
+        <tr><td class="n">Benítez, Thiago</td><td class="hide-sm"><span class="mk P">P</span></td><td class="hide-sm"><span class="mk P">P</span></td><td><span class="mk P">P</span></td><td><span class="mk P">P</span></td><td><span class="mk A today" id="todayMk">A</span></td><td class="c"><span class="cnt tab" id="cnt">10</span></td></tr>
+        <tr><td class="n">Cabral, Milagros</td><td class="hide-sm"><span class="mk A">A</span></td><td class="hide-sm"><span class="mk P">P</span></td><td><span class="mk P">P</span></td><td><span class="mk P">P</span></td><td><span class="mk P today">P</span></td><td class="c"><span class="cnt tab">6</span></td></tr>
+        <tr><td class="n">Coronel, Valentín</td><td class="hide-sm"><span class="mk P">P</span></td><td class="hide-sm"><span class="mk P">P</span></td><td><span class="mk P">P</span></td><td><span class="mk P">P</span></td><td><span class="mk P today">P</span></td><td class="c"><span class="cnt tab">3</span></td></tr>
+      </tbody>
+    </table>
+    <div class="sheet-foot">
+      <div class="sheet-act">
+        <span class="pill l1" id="semaf"><i></i>En seguimiento</span>
+        <p id="actTxt">Thiago llegó a 10 inasistencias. Trayecto avisó a la familia y a preceptoría a las 09:40.</p>
+        <button class="btn sm" id="replay" type="button"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Ver cómo sucede</button>
+      </div>
+      <div class="chat" id="chat" aria-live="polite">
+        <small>WhatsApp de la familia</small>
+        <div class="bubble" id="bub">Sra. Gabriela: Thiago llegó a 10 inasistencias en el ciclo lectivo 2026. Le pedimos acompañar su asistencia diaria; ante cualquier situación, comuníquese con preceptoría.<time>09:40</time></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="problema"><div class="wrap">
+  <div class="sec-h">
+    <p class="kicker">El problema</p>
+    <h2>La información ya existe en la escuela. El problema es que llega tarde.</h2>
+    <p class="intro">La asistencia se registra en la planilla de preceptoría y las calificaciones, en la planilla de cada docente. Lo que falta es cruzar esos datos todos los días y avisar a tiempo.</p>
+  </div>
+  <div class="pains">
+    <div class="pain"><h3>Las faltas se cuentan a mano</h3><p>Preceptoría suma inasistencias, llegadas tarde y justificaciones curso por curso. Cuando la familia se entera, el estudiante ya está cerca del límite.</p></div>
+    <div class="pain"><h3>El aviso depende de que alguien se acuerde</h3><p>Una nota en el cuaderno de comunicaciones o un llamado entre clase y clase. Si ese día no hubo tiempo, el aviso no se envía.</p></div>
+    <div class="pain"><h3>Nadie ve el cruce entre notas y asistencia</h3><p>Un estudiante que comienza a faltar y baja su rendimiento en dos materias muestra la señal más clara de riesgo de abandono. Hoy esa señal aparece recién en la reunión de cierre.</p></div>
+    <div class="pain"><h3>Los boletines se arman dos veces</h3><p>Se completan a mano y después se transcriben al boletín digital de Gestión Educativa, en una ventana de cinco días: del 14 al 18 de diciembre.</p></div>
+  </div>
+  <div class="context"><b class="tab">2</b><div><p>En Corrientes se promociona adeudando hasta dos materias. Detectar a tiempo a quien está por superar ese límite marca la diferencia entre acompañar una trayectoria y conocer una repitencia recién en febrero.</p><small>Más de 120.000 estudiantes cursan la secundaria en la provincia. Fuente: Ministerio de Educación de Corrientes, citado por El Litoral (marzo de 2023).</small></div></div>
+</div></section>
+
+<section class="sec" id="como" style="padding-top:0"><div class="wrap">
+  <div class="sec-h">
+    <p class="kicker">Cómo funciona</p>
+    <h2>Se registra, se calcula y se avisa. Todos los días, sin depender de la memoria de nadie.</h2>
+  </div>
+  <div class="steps">
+    <div class="step"><h3>Se registra</h3><p>Preceptoría toma asistencia desde el celular en medio minuto: todos presentes por defecto, se tocan solo las ausencias. Cada docente sube la planilla de Excel que ya usa.</p></div>
+    <div class="step"><h3>Se calcula</h3><p>Inasistencias, promedios por cuatrimestre, proyección de cada materia y un semáforo por estudiante, con las reglas de la escuela y el calendario escolar de Corrientes.</p></div>
+    <div class="step"><h3>Se avisa</h3><p>La familia recibe un WhatsApp el mismo día. El equipo directivo, una alerta con los motivos. Los informes de avance de todo el curso salen en segundos.</p></div>
+  </div>
+</div></section>
+
+<section class="band" id="reglas"><div class="wrap sec">
+  <div class="sec-h">
+    <p class="kicker">Automatizaciones</p>
+    <h2>Nueve reglas que trabajan todos los días por la escuela.</h2>
+    <p class="intro">Cada regla puede activarse o desactivarse, y la escuela define los textos que reciben las familias.</p>
+  </div>
+  <div class="rules">
+    <div class="rule"><span class="when">Cuando <b>un estudiante falta</b></span><p>Avisa a la familia ese mismo día, con la fecha de la falta.</p></div>
+    <div class="rule"><span class="when">Cuando <b>llega a 10 faltas</b></span><p>Envía un aviso preventivo a la familia y una alerta a preceptoría.</p></div>
+    <div class="rule"><span class="when">Cuando <b>llega a 15 faltas</b></span><p>Cita a la familia con día y hora, y avisa al equipo directivo.</p></div>
+    <div class="rule"><span class="when">Cuando <b>se acerca al límite</b></span><p>Alerta al equipo directivo para intervenir antes de que lo supere.</p></div>
+    <div class="rule"><span class="when">Cuando <b>falta tres días seguidos</b></span><p>Lanza una alerta temprana de abandono y le asigna a preceptoría un llamado.</p></div>
+    <div class="rule"><span class="when">Cuando <b>una nota baja de 7</b></span><p>Informa a la familia la nota, el promedio y la fecha de la instancia de apoyo.</p></div>
+    <div class="rule"><span class="when">Cuando <b>el semáforo pasa a rojo</b></span><p>Avisa al equipo directivo con los motivos concretos.</p></div>
+    <div class="rule"><span class="when">Cada <b>lunes a las 7:30</b></span><p>Envía al equipo directivo el resumen de asistencia, riesgo y pendientes.</p></div>
+    <div class="rule"><span class="when">Cuando <b>se generan los informes</b></span><p>Cada familia recibe el informe de su hijo o hija.</p></div>
+  </div>
+  <p class="note">Los umbrales de inasistencias de este ejemplo se ajustan al reglamento de asistencia de cada escuela.</p>
+</div></section>
+
+<section class="sec" id="roles"><div class="wrap">
+  <div class="sec-h">
+    <p class="kicker">Para cada rol</p>
+    <h2>Cada persona ve lo que necesita para actuar.</h2>
+  </div>
+  <div class="roles">
+    <div class="role"><h3>Equipo directivo</h3><p>Un panel con quién necesita atención hoy y por qué, las próximas fechas del calendario y un resumen cada lunes.</p></div>
+    <div class="role"><h3>Preceptoría</h3><p>Asistencia en el celular, cómputo automático de inasistencias y avisos a las familias que salen solos.</p></div>
+    <div class="role"><h3>Docentes</h3><p>Suben su Excel y ven promedios y proyección al instante. El informe pedagógico llega con un borrador redactado por IA para revisar.</p></div>
+    <div class="role"><h3>Familias</h3><p>Reciben la información el mismo día, por WhatsApp, con mensajes claros y respetuosos, sin instalar ninguna aplicación.</p></div>
+  </div>
+</div></section>
+
+<section class="sec" id="corrientes" style="padding-top:0"><div class="wrap">
+  <div class="sec-h">
+    <p class="kicker">Hecho para Corrientes</p>
+    <h2>Configurado con el calendario escolar 2026 de la provincia.</h2>
+    <p class="intro">Trayecto conoce los cuatrimestres, las instancias de apoyo y las ventanas de carga del boletín digital. No reemplaza a Gestión Educativa: deja las notas ordenadas y listas para cargarlas sin errores.</p>
+  </div>
+  <div class="cal">
+    <div class="cal-scroll"><div class="tl" id="tl" role="img" aria-label="Línea de tiempo del ciclo lectivo 2026 en Corrientes"></div></div>
+    <div class="facts"><span class="fact">Escala de 1 a 10</span><span class="fact">Se aprueba con 7</span><span class="fact">Promoción con hasta 2 materias adeudadas</span><span class="fact">Dos cuatrimestres</span><span class="fact">Receso: 13 al 24 de julio</span></div>
+    <p class="src">Fuentes: Calendario Escolar 2026, Resolución Ministerial N° 4706/25; Circular Pedagógica N° 6/23 y Decreto N° 1479/12 (Ministerio de Educación de Corrientes).</p>
+  </div>
+</div></section>
+
+<section class="sec" id="cuidado" style="padding-top:0"><div class="wrap care">
+  <div class="sec-h">
+    <p class="kicker">Datos de menores</p>
+    <h2>Son datos de estudiantes menores de edad. Su protección es prioritaria.</h2>
+    <p class="intro">El sistema se diseña e implementa en el marco de la Ley 25.326 de Protección de Datos Personales.</p>
+  </div>
+  <ul>
+    <li><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><div><b>Acceso por rol</b><span>Cada preceptor ve sus cursos, cada docente sus materias y cada familia solo a su hijo o hija.</span></div></li>
+    <li><svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><path d="M4 4l16 16"/></svg><div><b>Datos enmascarados en pantalla</b><span>DNI y teléfonos aparecen parcialmente ocultos; se muestran completos solo a quien los necesita.</span></div></li>
+    <li><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="m9 12 2 2 4-4"/></svg><div><b>La inteligencia artificial no decide</b><span>Redacta borradores de informes y responde consultas. Las decisiones pedagógicas son siempre de la escuela.</span></div></li>
+    <li><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg><div><b>Uso exclusivo para el seguimiento escolar</b><span>Los datos no se comparten con terceros ni se usan con fines comerciales.</span></div></li>
+  </ul>
+</div></section>
+
+<section class="sec" id="preguntas" style="padding-top:0"><div class="wrap">
+  <div class="sec-h"><p class="kicker">Preguntas frecuentes</p><h2>Lo que suelen preguntar los equipos directivos.</h2></div>
+  <div class="faq">
+    <details><summary>¿Reemplaza al boletín digital de Gestión Educativa?</summary><p>No. Trayecto acompaña el día a día de la escuela y deja las calificaciones ordenadas para el registro oficial, que sigue haciéndose en Gestión Educativa en las fechas del calendario.</p></details>
+    <details><summary>¿Hay que instalar algo?</summary><p>No. Funciona desde el navegador del celular o la computadora. Las familias reciben los avisos por WhatsApp, sin descargar ninguna aplicación.</p></details>
+    <details><summary>¿Qué pasa si se corta internet en el aula?</summary><p>La toma de asistencia está pensada para guardarse en el teléfono y enviarse apenas vuelve la conexión.</p></details>
+    <details><summary>¿Quién escribe los mensajes que reciben las familias?</summary><p>La escuela define los textos de cada aviso. Trayecto los completa con el nombre, la fecha y el dato que corresponde a cada estudiante.</p></details>
+    <details><summary>¿Los docentes tienen que cambiar su forma de trabajar?</summary><p>No. Siguen usando su planilla de Excel; la suben o pegan la columna de notas, y Trayecto hace el resto.</p></details>
+    <details><summary>¿Cómo se pone en marcha?</summary><p>Se carga la matrícula y el plan de estudios desde las planillas que la escuela ya tiene, y se ajustan los umbrales al reglamento institucional. Después, preceptoría toma la primera asistencia y el sistema empieza a trabajar.</p></details>
+  </div>
+</div></section>
+</main>
+
+<section class="final"><div class="wrap">
+  <div><h2>Conozca Trayecto en funcionamiento con los cursos de la escuela.</h2><p>En la demostración se toma asistencia, se cargan calificaciones, se generan los informes y se observa cómo llega cada aviso al celular de la familia.</p></div>
+  <div class="ctas"><a class="btn primary" href="https://plataforma-llano.vercel.app" data-demo target="_blank" rel="noopener">Abrir la demostración <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div></section>
+
+<footer><div class="wrap"><span>Trayecto es una propuesta de Yanina Insaurralde · automatizaciones y agentes de IA a medida · Corrientes, Argentina</span><span>La demostración utiliza datos ficticios: ningún nombre corresponde a estudiantes reales.</span></div></footer>
+
+</div>
+<script>
+"use strict";
+(function(){var r=document.getElementById("trayecto-landing");r.querySelectorAll("[data-demo]").forEach(function(a){if(window.TRAYECTO_DEMO_URL)a.href=window.TRAYECTO_DEMO_URL;});var l=r.querySelector(".school-logo");r.querySelectorAll("[data-logo]").forEach(function(i){i.src=l.src;});})();
+// Línea de tiempo del ciclo lectivo 2026 (Calendario Escolar RM 4706/25)
+(function(){
+  const tl=document.getElementById("tl");if(!tl)return;
+  const t0=Date.UTC(2026,2,2),t1=Date.UTC(2026,11,18),pos=d=>{const [y,m,dd]=d.split("-").map(Number);return (Date.UTC(y,m-1,dd)-t0)/(t1-t0)*100;};
+  const seg=(a,b,c)=>`<div class="seg" style="left:${pos(a)}%;width:${pos(b)-pos(a)}%;background:${c}"></div>`;
+  let h=`<div class="axis"></div>`+seg("2026-03-02","2026-07-31","var(--ink-3)")+seg("2026-07-13","2026-07-24","var(--line)")+seg("2026-08-01","2026-12-11","var(--accent)")+seg("2026-12-11","2026-12-18","var(--warn)");
+  const M=["mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
+  M.forEach((m,i)=>{h+=`<span class="m" style="left:${pos(`2026-${String(i+3).padStart(2,"0")}-01`)}%">${m}</span>`;});
+  const ev=[["2026-03-02","02/03","Inicio de clases","up",0],["2026-07-31","31/07","Fin del 1° cuatrimestre","up",0],["2026-08-04","31/07–07/08","Carga en Gestión Educativa","dn",1],["2026-12-09","07–11/12","Apoyo institucional","up",1],["2026-12-16","14–18/12","Intensificación y carga del boletín","dn",1]];
+  ev.forEach(([d,f,t,ud,acc])=>{h+=`<div class="pin${acc?" acc":""}" style="left:${pos(d)}%"></div><div class="ev ${ud}" style="left:clamp(60px,${pos(d)}%,calc(100% - 60px))"><b>${f}</b><span>${t}</span></div>`;});
+  tl.innerHTML=h;
+})();
+
+// La planilla viva del hero: se marca la falta, se recalcula y llega el aviso
+(function(){
+  const mk=document.getElementById("todayMk"),cnt=document.getElementById("cnt"),sem=document.getElementById("semaf"),txt=document.getElementById("actTxt"),chat=document.getElementById("chat"),btn=document.getElementById("replay");
+  const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let timers=[];const later=(f,ms)=>timers.push(setTimeout(f,reduce?0:ms));
+  btn.addEventListener("click",()=>{
+    timers.forEach(clearTimeout);timers=[];
+    mk.className="mk P today";mk.textContent="P";cnt.textContent="9";sem.className="pill l0";sem.innerHTML="<i></i>Sin alertas";
+    txt.textContent="Preceptoría marca la asistencia de hoy…";chat.querySelectorAll(".bubble,.typing").forEach(n=>n.remove());btn.disabled=true;
+    later(()=>{mk.className="mk A today";mk.textContent="A";txt.textContent="Thiago figura ausente. Trayecto recalcula sus inasistencias.";},900);
+    later(()=>{cnt.textContent="10";cnt.classList.remove("flash");void cnt.offsetWidth;cnt.classList.add("flash");sem.className="pill l1";sem.innerHTML="<i></i>En seguimiento";txt.textContent="Llegó a 10 inasistencias: se activa el aviso preventivo.";},1900);
+    later(()=>{const t=document.createElement("div");t.className="typing";t.innerHTML="<i></i><i></i><i></i>";chat.appendChild(t);},2600);
+    later(()=>{chat.querySelector(".typing")?.remove();const b=document.createElement("div");b.className="bubble in";b.innerHTML="Sra. Gabriela: Thiago llegó a 10 inasistencias en el ciclo lectivo 2026. Le pedimos acompañar su asistencia diaria; ante cualquier situación, comuníquese con preceptoría.<time>09:40</time>";chat.appendChild(b);txt.textContent="Thiago llegó a 10 inasistencias. Trayecto avisó a la familia y a preceptoría a las 09:40.";btn.disabled=false;},3600);
+  });
+})();
+</script>
+
+</body></html>

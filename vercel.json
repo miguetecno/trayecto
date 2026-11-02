@@ -1,10 +1,10 @@
 {
   "cleanUrls": true,
   "redirects": [
-    {
-      "source": "/",
-      "destination": "https://www.misterdigital.org/trayecto-llano",
-      "permanent": false
-    }
+    { "source": "/", "has": [{ "type": "host", "value": "trayecto.misterdigital.org" }], "destination": "https://www.misterdigital.org/trayecto-llano", "permanent": false }
+  ],
+  "rewrites": [
+    { "source": "/", "has": [{ "type": "host", "value": "propuesta-llano.vercel.app" }], "destination": "/propuesta" },
+    { "source": "/", "has": [{ "type": "host", "value": "plataforma-llano.vercel.app" }], "destination": "/demo" }
   ]
 }
